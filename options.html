@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="assets/salesforce-lightning-design-system.min.css">
+    <link rel="stylesheet" href="assets/tui-grid.min.css">
+    <script type="text/javascript" src="assets/tui-grid.min.js"></script>
+  </head>
+  <body>
+    <div class="slds-page-header">
+      <div class="slds-page-header__row">
+      <div class="slds-page-header__col-title">
+      <div class="slds-media">
+      <div class="slds-media__body">
+      <div class="slds-page-header__name">
+      <div class="slds-page-header__name-title">
+      <h1>
+      <span class="slds-page-header__title slds-truncate" title="coreBOS Options">coreBOS Create Record Settings</span>
+      </h1>
+      </div>
+      </div>
+      </div>
+      </div>
+      </div>
+      </div>
+    </div>
+    <div class="slds-form">
+      <div class="slds-form-element slds-form-element_stacked">
+        <label class="slds-form-element__label slds-page-header__meta-text" for="modules"><abbr class="slds-required" title="required">* </abbr>coreBOS URLs</label>
+        <button class="slds-float_right" id="addBtncburls">Add</button>
+        <div id="cburls"></div>
+      </div>
+      <div class="slds-form-element slds-form-element_stacked">
+        <label class="slds-form-element__label slds-page-header__meta-text" for="modules"><abbr class="slds-required" title="required">* </abbr>Modules (comma separated list)</label>
+        <div class="slds-form-element__control">
+          <input type="text" id="modules" class="slds-input" />
+        </div>
+      </div>
+      <div class="slds-form-element slds-form-element_stacked">
+        <label class="slds-form-element__label slds-page-header__meta-text" for="modules"><abbr class="slds-required" title="required">* </abbr>Optional Fields</label>
+        <button class="slds-float_right" id="addBtncbflds">Add</button>
+        <div id="cbfields"></div>
+      </div>
+    </div>
+    <div>
+		<button class="slds-m-around_x-small" id="savesettings">Save Settings</button>
+    <div class="slds-scoped-notification slds-media slds-media_center slds-scoped-notification_light slds-hide slds-m-around_small slds-p-around_x-small" role="status" id="notificationcontainer">
+      <div class="slds-media__body" id="notificationdiv"></div>
+    </div>
+    </div>
+  </body>
+  <script src="options.js"></script>
+</html>

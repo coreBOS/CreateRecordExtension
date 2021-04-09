@@ -1,0 +1,30 @@
+{
+	"manifest_version": 3,
+	"name": "coreBOS Extension",
+	"version": "0.1",
+	"icons": {
+		"16": "assets/coreBOSicon.png",
+		"32": "assets/coreBOSicon.png",
+		"48": "assets/coreBOSicon.png",
+		"128": "assets/coreBOS100.png"
+	},
+	"content_scripts": [
+		{
+			"matches": [
+				"<all_urls>"
+			],
+			"js": ["content.js"]
+		}
+	],
+	"background": {
+		"service_worker": "background.js"
+	},
+	"content_security_policy": {
+		"extension_pages": "script-src 'self'; style-src 'self' 'sha256-hR6Bms/vAh9QtMrFQi6CEmfZDuemvopiLkbyxlVNFcg='; default-src 'self'"
+	},
+	"permissions": ["storage"],
+	"options_page": "options.html",
+	"action": {
+		"default_popup": "popup.html"
+	}
+}

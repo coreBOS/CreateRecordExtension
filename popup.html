@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="assets/salesforce-lightning-design-system.min.css">
+  </head>
+  <body>
+    <div class="slds-page-header">
+      <div class="slds-page-header__row">
+      <div class="slds-page-header__col-title">
+      <div class="slds-media">
+      <div class="slds-media__body">
+      <div class="slds-page-header__name">
+      <div class="slds-page-header__name-title">
+      <h1>
+      <span class="slds-page-header__title slds-truncate" title="Create Record">Create Record</span>
+      </h1>
+      </div>
+      </div>
+      </div>
+      </div>
+      </div>
+      </div>
+    </div>
+    <div class="slds-form">
+      <div class="slds-form">
+        <div class="slds-form-element slds-form-element_stacked">
+        <label class="slds-form-element__label" for="title"><abbr class="slds-required" title="required">* </abbr>Title</label>
+        <div class="slds-form-element__control">
+        <input type="text" id="title" class="slds-input" />
+        </div>
+        </div>
+        <div class="slds-form-element slds-form-element_stacked">
+        <label class="slds-form-element__label" for="description"><abbr class="slds-required" title="required">* </abbr>Description</label>
+        <div class="slds-form-element__control">
+        <textarea id="description" class="slds-textarea"></textarea>
+        </div>
+        </div>
+        <fieldset class="slds-form-element slds-form-element_stacked"></fieldset>
+      </div>
+    </div>
+    <div id="buttonDiv">
+    </div>
+    <div>
+		<input id="corebosurl" name="corebosurl" value="">
+		<button id="setcburl">Set your coreBOS URL</button>
+    </div>
+    <script src="cbutils.js"></script>
+    <script src="popup.js"></script>
+  </body>
+</html>
