@@ -1,8 +1,8 @@
-function cbGetSelectedText(d){
+function cbGetSelectedText(d) {
 	var S='';
-	if (d.all){
+	if (d.all) {
 		S=d.selection.createRange().text;
-	}else{
+	} else {
 		S=d.getSelection().toString();
 	}
 	return S;
@@ -10,10 +10,10 @@ function cbGetSelectedText(d){
 
 function cbOpenURL() {
 	var u=null;
-	if(frames.length==0){
+	if (frames.length==0) {
 		u=G(document);
-	}else{
-		for(i=0;F=frames[i];++i){
+	} else {
+		for (i=0; F=frames[i]; ++i) {
 			u=G(F.document);
 			if(u) break;
 		}
@@ -35,21 +35,31 @@ function cbOpenURL() {
 	}
 }
 
+function cbFillPicklist(picklist, options) {
+	var select = document.getElementById(picklist);
+	for (var i = 0; i < options.length; i++) {
+		var el = document.createElement('option');
+		el.text = options[i].label;
+		el.value = options[i].value;
+		select.appendChild(el);
+	}
+}
+
 // Called when the user clicks on the browser action.
 // chrome.browserAction.onClicked.addListener(function(tab) {
 // 	// Send a message to the active tab
 // 	chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
 // 		var activeTab = tabs[0];
-// 		chrome.tabs.sendMessage(activeTab.id, {"message": "clicked_browser_action"});
+// 		chrome.tabs.sendMessage(activeTab.id, {'message': 'clicked_browser_action'});
 // 	});
 // });
 
 chrome.runtime.onMessage.addListener(
 	function(request, sender, sendResponse) {
-		if( request.message === "open_corebos_new_tab" ) {
-			chrome.storage.sync.get("corebosurl", ({ corebosurl }) => {
+		if( request.message === 'open_corebos_new_tab' ) {
+			chrome.storage.sync.get('corebosurl', ({ corebosurl }) => {
 				console.log(corebosurl);
-				chrome.tabs.create({"url": corebosurl});
+				chrome.tabs.create({'url': corebosurl});
 			});
 		}
 	}

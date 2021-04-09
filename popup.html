@@ -3,7 +3,7 @@
   <head>
     <link rel="stylesheet" href="assets/salesforce-lightning-design-system.min.css">
   </head>
-  <body>
+  <body class="slds-popover_large">
     <div class="slds-page-header">
       <div class="slds-page-header__row">
       <div class="slds-page-header__col-title">
@@ -21,8 +21,14 @@
       </div>
       </div>
     </div>
-    <div class="slds-form">
+    <div class="slds-form slds-p-around_x-small slds-card">
       <div class="slds-form">
+        <div class="slds-form-element slds-form-element_stacked">
+          <label class="slds-form-element__label" for="convertto"><abbr class="slds-required" title="required">* </abbr>Convert to</label>
+          <div class="slds-form-element__control">
+          <select id="convertto" class="slds-select" ></select>
+          </div>
+        </div>
         <div class="slds-form-element slds-form-element_stacked">
         <label class="slds-form-element__label" for="title"><abbr class="slds-required" title="required">* </abbr>Title</label>
         <div class="slds-form-element__control">
@@ -30,19 +36,21 @@
         </div>
         </div>
         <div class="slds-form-element slds-form-element_stacked">
-        <label class="slds-form-element__label" for="description"><abbr class="slds-required" title="required">* </abbr>Description</label>
+        <label class="slds-form-element__label" for="description">Description</label>
         <div class="slds-form-element__control">
         <textarea id="description" class="slds-textarea"></textarea>
         </div>
         </div>
-        <fieldset class="slds-form-element slds-form-element_stacked"></fieldset>
+        <fieldset class="slds-form-element slds-form-element_stacked" id="customfields"></fieldset>
       </div>
-    </div>
-    <div id="buttonDiv">
-    </div>
-    <div>
-		<input id="corebosurl" name="corebosurl" value="">
-		<button id="setcburl">Set your coreBOS URL</button>
+      <div class="slds-grid slds-wrap slds-gutters_xxx-small">
+        <div class="slds-col slds-size_1-of-3">
+          <button id="sendtocb" class="slds-button_stretch slds-input_height">Send To</button>
+        </div>
+        <div class="slds-col slds-size_2-of-3">
+          <select id="sendto" class="slds-select" ></select>
+        </div>
+      </div>
     </div>
     <script src="cbutils.js"></script>
     <script src="popup.js"></script>
