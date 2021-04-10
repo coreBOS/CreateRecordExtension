@@ -231,6 +231,14 @@ document.getElementById('savesettings').onclick=function (e) {
 		'cbtitles': cbtitles
 	};
 	chrome.storage.sync.set({'coreboscreaterecorddata':cbdata});
+	document.getElementById('notificationdiv').innerHTML='Settings saved.';
+	document.getElementById('notificationcontainer').classList.remove('slds-hide');
+	setTimeout(
+		function () {
+			document.getElementById('notificationcontainer').classList.add('slds-hide');
+		},
+		2500
+	);
 }
 document.getElementById('addBtncburls').onclick=function (e) {
 	tuiGridActions.addRow(cburlsgrid, cburlrow);
