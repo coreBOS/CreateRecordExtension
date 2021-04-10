@@ -14,9 +14,6 @@
 			"js": ["content.js"]
 		}
 	],
-	"background": {
-		"service_worker": "background.js"
-	},
 	"content_security_policy": {
 		"extension_pages": "script-src 'self'; style-src 'self' 'sha256-hR6Bms/vAh9QtMrFQi6CEmfZDuemvopiLkbyxlVNFcg='; default-src 'self'"
 	},
