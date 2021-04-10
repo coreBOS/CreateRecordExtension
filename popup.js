@@ -1,17 +1,27 @@
 chrome.runtime.onMessage.addListener(
 	function(request, sender, sendResponse) {
+		var event = new Event('change');
 		switch (request.message) {
 			case 'selectedtext':
 				if (request.payload.field=='description') {
 					document.getElementById('description').value = request.selectedtext;
+					document.getElementById('description').dispatchEvent(event);
 				} else {
 					document.getElementById('title').value = request.selectedtext;
+					document.getElementById('title').dispatchEvent(event);
 				}
-				//chrome.tabs.create({"url": request.url});
 				break;
 		}
 	}
 );
+
+document.getElementById('title').onchange=function (e) {
+	chrome.storage.sync.set({'corebospopuptitle':document.getElementById('title').value});
+};
+
+document.getElementById('description').onchange=function (e) {
+	chrome.storage.sync.set({'corebospopupdesc':document.getElementById('description').value});
+};
 
 document.getElementById('sendtocb').onclick=function (e) {
 	chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
@@ -66,6 +76,22 @@ document.getElementById('convertto').onchange=function (e) {
 		}
 	});
 };
+
+chrome.storage.sync.get('corebospopuptitle', ({ corebospopuptitle }) => {
+	if (corebospopuptitle!=undefined) {
+		document.getElementById('title').value = corebospopuptitle;
+	} else {
+		document.getElementById('title').value = '';
+	}
+});
+
+chrome.storage.sync.get('corebospopupdesc', ({ corebospopupdesc }) => {
+	if (corebospopupdesc!=undefined) {
+		document.getElementById('description').value = corebospopupdesc;
+	} else {
+		document.getElementById('description').value = '';
+	}
+});
 
 chrome.storage.sync.get('coreboscreaterecorddata', ({ coreboscreaterecorddata }) => {
 	if (coreboscreaterecorddata==undefined) {
