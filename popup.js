@@ -97,11 +97,11 @@ chrome.storage.sync.get('coreboscreaterecorddata', ({ coreboscreaterecorddata })
 	if (coreboscreaterecorddata==undefined) {
 		return;
 	}
-	if (coreboscreaterecorddata.modules!=undefined) {
-		var mods = coreboscreaterecorddata.modules.split(',').map((m) => {
+	if (coreboscreaterecorddata.cbmodules!=undefined) {
+		var mods = coreboscreaterecorddata.cbmodules.map((m) => {
 			return {
-				'label': m,
-				'value': m
+				'label': m.mdlabel,
+				'value': m.cbmodule
 			};
 		});
 		cbFillPicklist('convertto', mods);

@@ -16,6 +16,15 @@ class ActionRender {
 					tuiGridActions.deleteRow(cburlsgrid, cbrow);
 				});
 				break;
+			case 'cbmods':
+				if (cbmodsgrid!=undefined) {
+					cbrowid = cbmodsgrid.getRowCount();
+				}
+				btn.id = 'tuiGridActionscbmodsDeleteRow'+cbrowid;
+				btn.addEventListener('click', (ev) => {
+					tuiGridActions.deleteRow(cbmodsgrid, cbrow);
+				});
+				break;
 			default:
 				if (cbfldsgrid!=undefined) {
 					cbrowid = cburlsgrid.getRowCount();
@@ -27,9 +36,6 @@ class ActionRender {
 				break;
 		}
 		el.appendChild(btn);
-		//el.innerHTML = `<button id="${btnid}" data-grid="cburlsgrid" data-row="${props.rowKey}">Delete</button>`;
-		//el.innerHTML = `<button onclick="tuiGridActions.deleteRow(cbfldsgrid, ${props.rowKey});">Delete</button>`;
-		//el.innerHTML = `<button id="${this.btnid}">Delete</button>`;
 		this.el = el;
 		this.render(props);
 	}
@@ -55,6 +61,12 @@ const tuiGridActions = {
 const cburlrow = {
 	'cbname':'',
 	'cburl':''
+};
+
+const cbmodrow = {
+	'mdlabel':'',
+	'cbmodule':'',
+	'cbfield':''
 };
 
 const cbfldrow = {
@@ -128,12 +140,59 @@ var cburlsgrid = new tui.Grid({
 	}
 });
 
+var cbmodsgrid = new tui.Grid({
+	el: document.getElementById('cbmods'),
+	data: [],
+	scrollX: false,
+	scrollY: false,
+	columns: [
+		{
+			header: 'Label',
+			name: 'mdlabel',
+			editor: 'text'
+		},
+		{
+			header: 'Module',
+			name: 'cbmodule',
+			editor: 'text'
+		},
+		{
+			header: 'Title Field',
+			name: 'cbfield',
+			editor: 'text'
+		},
+		{
+			header: 'Action',
+			name: 'faction',
+			width: 100,
+			renderer: {
+				type: ActionRender,
+			},
+		}
+	],
+	columnOptions: {
+		resizable: true
+	}
+});
+
 document.getElementById('savesettings').onclick=function (e) {
 	let cburls = cburlsgrid.getData().map((r) => {
 		return {
 			'cbname': r.cbname,
 			'cburl': r.cburl
 		}
+	});
+	let cbmods = cbmodsgrid.getData().map((r) => {
+		return {
+			'mdlabel': r.mdlabel,
+			'cbmodule': r.cbmodule,
+			'cbfield': r.cbfield
+		}
+	});
+	var cbtitles = {};
+	cbmodsgrid.getData().map((r) => {
+		cbtitles[r.cbmodule] = r.cbfield;
+		return {};
 	});
 	let cbflds = cbfldsgrid.getData().map((r) => {
 		return {
@@ -145,12 +204,16 @@ document.getElementById('savesettings').onclick=function (e) {
 	let cbdata = {
 		'cburls': cburls,
 		'cbfields': cbflds,
-		'modules': document.getElementById('modules').value
+		'cbmodules': cbmods,
+		'cbtitles': cbtitles
 	};
 	chrome.storage.sync.set({'coreboscreaterecorddata':cbdata});
 }
 document.getElementById('addBtncburls').onclick=function (e) {
 	tuiGridActions.addRow(cburlsgrid, cburlrow);
+}
+document.getElementById('addBtncbmods').onclick=function (e) {
+	tuiGridActions.addRow(cbmodsgrid, cbmodrow);
 }
 document.getElementById('addBtncbflds').onclick=function (e) {
 	tuiGridActions.addRow(cbfldsgrid, cbfldrow);
@@ -159,8 +222,9 @@ chrome.storage.sync.get('coreboscreaterecorddata', ({ coreboscreaterecorddata })
 	if (coreboscreaterecorddata==undefined) {
 		return;
 	}
-	if (coreboscreaterecorddata.modules!=undefined) {
-		document.getElementById('modules').value = coreboscreaterecorddata.modules;
+	if (coreboscreaterecorddata.cbmodules!=undefined) {
+		cbmodsgrid.resetData(coreboscreaterecorddata.cbmodules);
+		cbmodsgrid.resetOriginData();
 	}
 	if (coreboscreaterecorddata.cburls!=undefined) {
 		cburlsgrid.resetData(coreboscreaterecorddata.cburls);
