@@ -24,10 +24,8 @@ document.getElementById('description').onchange=function (e) {
 };
 
 document.getElementById('sendtocb').onclick=function (e) {
-	chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-		var activeTab = tabs[0];
-		chrome.tabs.sendMessage(activeTab.id, {'message': 'clicked_browser_action'});
-	});
+	let url = document.getElementById('sendto').value + '/index.php?action=EditView&module=' + document.getElementById('convertto').value;
+	document.getElementById('sendtocbform').action = url;
 };
 
 document.getElementById('titlepaste').onclick=function (e) {
@@ -56,6 +54,9 @@ document.getElementById('convertto').onchange=function (e) {
 		if (coreboscreaterecorddata==undefined) {
 			return;
 		}
+		if (coreboscreaterecorddata.cbtitles!=undefined) {
+			document.getElementById('title').name = coreboscreaterecorddata.cbtitles[module];
+		}
 		if (coreboscreaterecorddata.cbfields!=undefined) {
 			var fset = document.getElementById('customfields');
 			fset.innerHTML = '';
@@ -67,12 +68,27 @@ document.getElementById('convertto').onchange=function (e) {
 					fdef += `<div class="slds-form-element slds-form-element_stacked">
 					<label class="slds-form-element__label" for="${fieldname}">${fieldlabel}</label>
 					<div class="slds-form-element__control">
-					<input type="text" id="${fieldname}" class="slds-input" />
+					<input type="text" name="${fieldname}" id="${fieldname}" class="slds-input" />
 					</div>
 					</div>`;
 				}
 			}
 			fset.innerHTML = fdef;
+		}
+	});
+};
+
+document.getElementById('sendto').onchange=function (e) {
+	var cburl = e.target.options[e.target.selectedIndex].text;
+	chrome.storage.sync.get('coreboscreaterecorddata', ({ coreboscreaterecorddata }) => {
+		if (coreboscreaterecorddata==undefined) {
+			return;
+		}
+		if (coreboscreaterecorddata.cbsecrets!=undefined) {
+			const rightnow = Date.now();
+			cbsha1(coreboscreaterecorddata.cbsecrets[cburl].secret + coreboscreaterecorddata.cbsecrets[cburl].key + rightnow).then((hash) => {
+				document.getElementById('__vt5rftk').value = 'key:' + hash + ',' + rightnow;
+			});
 		}
 	});
 };

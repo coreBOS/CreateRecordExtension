@@ -21,6 +21,8 @@
       </div>
       </div>
     </div>
+    <form target="_blank" method="POST" id="sendtocbform">
+    <input type="hidden" id="__vt5rftk" name="__vt5rftk" value="">
     <div class="slds-form slds-p-around_x-small slds-card">
       <div class="slds-form">
         <div class="slds-form-element slds-form-element_stacked">
@@ -33,11 +35,11 @@
         <label class="slds-form-element__label" for="title"><abbr class="slds-required" title="required">* </abbr>Title</label>
         <div class="slds-form-element__control slds-grid slds-wrap slds-gutters_xxx-small">
           <div class="slds-col slds-size_5-of-6">
-            <input type="text" id="title" class="slds-input" />
+            <input type="text" name="title" id="title" class="slds-input" />
           </div>
           <div class="slds-col slds-size_1-of-6">
-            <button id="titlepaste" class="slds-input_height">P</button>
-            <button id="titleclear" class="slds-input_height">C</button>
+            <button type="button" id="titlepaste" class="slds-input_height">P</button>
+            <button type="button" id="titleclear" class="slds-input_height">C</button>
           </div>
         </div>
         </div>
@@ -45,11 +47,11 @@
         <label class="slds-form-element__label" for="description">Description</label>
         <div class="slds-form-element__control slds-grid slds-wrap slds-gutters_xxx-small">
           <div class="slds-col slds-size_5-of-6">
-            <textarea id="description" class="slds-textarea"></textarea>
+            <textarea name="description" id="description" class="slds-textarea"></textarea>
           </div>
           <div class="slds-col slds-size_1-of-6">
-            <button id="descpaste" class="slds-input_height">P</button>
-            <button id="descclear" class="slds-input_height">C</button>
+            <button type="button" id="descpaste" class="slds-input_height">P</button>
+            <button type="button" id="descclear" class="slds-input_height">C</button>
           </div>
       </div>
         </div>
@@ -64,6 +66,7 @@
         </div>
       </div>
     </div>
+    </form>
     <script src="cbutils.js"></script>
     <script src="popup.js"></script>
   </body>

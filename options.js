@@ -60,7 +60,9 @@ const tuiGridActions = {
 
 const cburlrow = {
 	'cbname':'',
-	'cburl':''
+	'cburl':'',
+	'cbsecret':'',
+	'cbkey':''
 };
 
 const cbmodrow = {
@@ -127,6 +129,16 @@ var cburlsgrid = new tui.Grid({
 			editor: 'text'
 		},
 		{
+			header: 'Secret',
+			name: 'cbsecret',
+			editor: 'text'
+		},
+		{
+			header: 'Key',
+			name: 'cbkey',
+			editor: 'text'
+		},
+		{
 			header: 'Action',
 			name: 'faction',
 			width: 100,
@@ -179,8 +191,18 @@ document.getElementById('savesettings').onclick=function (e) {
 	let cburls = cburlsgrid.getData().map((r) => {
 		return {
 			'cbname': r.cbname,
-			'cburl': r.cburl
+			'cburl': r.cburl,
+			'cbsecret': r.cbsecret,
+			'cbkey': r.cbkey
 		}
+	});
+	var cbsecrets = {};
+	cburlsgrid.getData().map((r) => {
+		cbsecrets[r.cbname] = {
+			'secret': r.cbsecret,
+			'key': r.cbkey
+		};
+		return {};
 	});
 	let cbmods = cbmodsgrid.getData().map((r) => {
 		return {
@@ -203,6 +225,7 @@ document.getElementById('savesettings').onclick=function (e) {
 	});
 	let cbdata = {
 		'cburls': cburls,
+		'cbsecrets': cbsecrets,
 		'cbfields': cbflds,
 		'cbmodules': cbmods,
 		'cbtitles': cbtitles
