@@ -1,0 +1,80 @@
+{
+	"extname": {
+		"message": "Enviar a coreBOS"
+	},
+	"CreateRecord": {
+		"message": "Crear registro"
+	},
+	"ConvertTo": {
+		"message": "Convertir en"
+	},
+	"Required": {
+		"message": "obligatorio"
+	},
+	"Title": {
+		"message": "Título"
+	},
+	"Description": {
+		"message": "Descripción"
+	},
+	"SendTo": {
+		"message": "Enviar a"
+	},
+	"Paste": {
+		"message": "Pegar"
+	},
+	"Clear": {
+		"message": "Limpiar"
+	},
+	"Delete": {
+		"message": "Eliminar"
+	},
+	"Label": {
+		"message": "Etiqueta"
+	},
+	"Name": {
+		"message": "Nombre"
+	},
+	"Module": {
+		"message": "Módulo"
+	},
+	"Modules": {
+		"message": "Módulos"
+	},
+	"Action": {
+		"message": "Acción"
+	},
+	"URL": {
+		"message": "URL"
+	},
+	"Secret": {
+		"message": "Secreto"
+	},
+	"Key": {
+		"message": "Clave"
+	},
+	"TitleField": {
+		"message": "Campo de Título"
+	},
+	"SaveSettings": {
+		"message": "Guardar configuración"
+	},
+	"SettingsSaved": {
+		"message": "Configuración guardada."
+	},
+	"cbURLs": {
+		"message": "URLs de coreBOS"
+	},
+	"OptionalFields": {
+		"message": "Campos Opcionales"
+	},
+	"cbSettings": {
+		"message": "Opciones de coreBOS"
+	},
+	"CreateRecordSettings": {
+		"message": "Configuración Creación Registros en coreBOS"
+	},
+	"Add": {
+		"message": "Añadir"
+	}
+}
