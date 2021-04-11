@@ -41,6 +41,38 @@ function cbFillPicklist(picklist, options) {
 	}
 }
 
+function cbi18nHTML() {
+	document.querySelectorAll('[data-locale]').forEach(elem => {
+		let contentAction = elem.dataset.locale.substring(0, 1);
+		let titleAction = elem.dataset.locale.substring(1, 1);
+		let i18nkey = elem.dataset.locale.substring(3);
+		let i18n = i18nkey ? chrome.i18n.getMessage(i18nkey) : '';
+		switch (contentAction) {
+			case 'I': // ignore
+				break;
+			case 'S': // substitute
+				elem.innerHTML = elem.innerHTML.replace(i18nkey, i18n);
+				break;
+			default:
+			case 'T': // translate and set context
+				elem.innerHTML = i18n;
+				break;
+		}
+		switch (titleAction) {
+			case 'I': // ignore
+				break;
+			case 'S': // substitute
+				elem.title = elem.title.replace(i18nkey, i18n);
+				break;
+			default:
+			case 'T': // translate and set title
+				elem.title = i18n;
+				break;
+		}
+		elem.removeAttribute('data-locale');
+	});
+}
+
 chrome.runtime.onMessage.addListener(
 	function(request, sender, sendResponse) {
 		if( request.message === 'open_corebos_new_tab' ) {

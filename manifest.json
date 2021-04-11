@@ -1,7 +1,8 @@
 {
 	"manifest_version": 3,
-	"name": "coreBOS Extension",
+	"name": "__MSG_extname__",
 	"version": "0.1",
+	"default_locale":"en",
 	"icons": {
 		"16": "assets/coreBOSicon.png",
 		"32": "assets/coreBOSicon.png",

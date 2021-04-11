@@ -1,0 +1,80 @@
+{
+	"extname": {
+		"message": "Send to coreBOS"
+	},
+	"CreateRecord": {
+		"message": "Create Record"
+	},
+	"ConvertTo": {
+		"message": "Convert to"
+	},
+	"Required": {
+		"message": "required"
+	},
+	"Title": {
+		"message": "Title"
+	},
+	"Description": {
+		"message": "Description"
+	},
+	"SendTo": {
+		"message": "Send to"
+	},
+	"Paste": {
+		"message": "Paste"
+	},
+	"Clear": {
+		"message": "Clear"
+	},
+	"Delete": {
+		"message": "Delete"
+	},
+	"Label": {
+		"message": "Label"
+	},
+	"Name": {
+		"message": "Name"
+	},
+	"Module": {
+		"message": "Module"
+	},
+	"Modules": {
+		"message": "Modules"
+	},
+	"Action": {
+		"message": "Action"
+	},
+	"URL": {
+		"message": "URL"
+	},
+	"Secret": {
+		"message": "Secret"
+	},
+	"Key": {
+		"message": "Key"
+	},
+	"TitleField": {
+		"message": "Title Field"
+	},
+	"SaveSettings": {
+		"message": "Save Settings"
+	},
+	"SettingsSaved": {
+		"message": "Settings saved."
+	},
+	"cbURLs": {
+		"message": "coreBOS URLs"
+	},
+	"OptionalFields": {
+		"message": "Optional Fields"
+	},
+	"cbSettings": {
+		"message": "coreBOS Options"
+	},
+	"CreateRecordSettings": {
+		"message": "coreBOS Create Record Settings"
+	},
+	"Add": {
+		"message": "Add"
+	}
+}

@@ -1,3 +1,7 @@
+// i18n
+cbi18nHTML();
+cbi18nHTML(); // twice is intentional for nested elements
+
 class ActionRender {
 
 	constructor(props) {
@@ -5,7 +9,8 @@ class ActionRender {
 		var cbrow = props.rowKey;
 		let el = document.createElement('span');
 		let btn = document.createElement('button');
-		btn.innerHTML = 'Delete';
+		btn.innerHTML = chrome.i18n.getMessage('Delete');
+		btn.title = chrome.i18n.getMessage('Delete');
 		switch (props.grid.el.id) {
 			case 'cburls':
 				if (cburlsgrid!=undefined) {
@@ -84,22 +89,22 @@ var cbfldsgrid = new tui.Grid({
 	scrollY: false,
 	columns: [
 		{
-			header: 'Label',
+			header: chrome.i18n.getMessage('Label'),
 			name: 'flabel',
 			editor: 'text'
 		},
 		{
-			header: 'Name',
+			header: chrome.i18n.getMessage('Name'),
 			name: 'fname',
 			editor: 'text'
 		},
 		{
-			header: 'Module',
+			header: chrome.i18n.getMessage('Module'),
 			name: 'fmodule',
 			editor: 'text'
 		},
 		{
-			header: 'Action',
+			header: chrome.i18n.getMessage('Action'),
 			name: 'faction',
 			width: 100,
 			renderer: {
@@ -119,27 +124,27 @@ var cburlsgrid = new tui.Grid({
 	scrollY: false,
 	columns: [
 		{
-			header: 'Name',
+			header: chrome.i18n.getMessage('Name'),
 			name: 'cbname',
 			editor: 'text'
 		},
 		{
-			header: 'URL',
+			header: chrome.i18n.getMessage('URL'),
 			name: 'cburl',
 			editor: 'text'
 		},
 		{
-			header: 'Secret',
+			header: chrome.i18n.getMessage('Secret'),
 			name: 'cbsecret',
 			editor: 'text'
 		},
 		{
-			header: 'Key',
+			header: chrome.i18n.getMessage('Key'),
 			name: 'cbkey',
 			editor: 'text'
 		},
 		{
-			header: 'Action',
+			header: chrome.i18n.getMessage('Action'),
 			name: 'faction',
 			width: 100,
 			renderer: {
@@ -159,22 +164,22 @@ var cbmodsgrid = new tui.Grid({
 	scrollY: false,
 	columns: [
 		{
-			header: 'Label',
+			header: chrome.i18n.getMessage('Label'),
 			name: 'mdlabel',
 			editor: 'text'
 		},
 		{
-			header: 'Module',
+			header: chrome.i18n.getMessage('Module'),
 			name: 'cbmodule',
 			editor: 'text'
 		},
 		{
-			header: 'Title Field',
+			header: chrome.i18n.getMessage('TitleField'),
 			name: 'cbfield',
 			editor: 'text'
 		},
 		{
-			header: 'Action',
+			header: chrome.i18n.getMessage('Action'),
 			name: 'faction',
 			width: 100,
 			renderer: {
@@ -231,7 +236,7 @@ document.getElementById('savesettings').onclick=function (e) {
 		'cbtitles': cbtitles
 	};
 	chrome.storage.sync.set({'coreboscreaterecorddata':cbdata});
-	document.getElementById('notificationdiv').innerHTML='Settings saved.';
+	document.getElementById('notificationdiv').innerHTML = chrome.i18n.getMessage('SettingsSaved');
 	document.getElementById('notificationcontainer').classList.remove('slds-hide');
 	setTimeout(
 		function () {

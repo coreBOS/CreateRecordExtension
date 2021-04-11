@@ -1,3 +1,7 @@
+// i18n
+cbi18nHTML();
+cbi18nHTML(); // twice is intentional for nested elements
+
 chrome.runtime.onMessage.addListener(
 	function(request, sender, sendResponse) {
 		var event = new Event('change');
