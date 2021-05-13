@@ -2,6 +2,9 @@
 cbi18nHTML();
 cbi18nHTML(); // twice is intentional for nested elements
 
+let sendTotextfield = document.querySelector('input[name="__vt5rftk"]');
+let sendtoSeletField = document.getElementById('sendto')
+
 chrome.runtime.onMessage.addListener(
 	function(request, sender, sendResponse) {
 		var event = new Event('change');
@@ -82,7 +85,12 @@ document.getElementById('convertto').onchange=function (e) {
 	});
 };
 
-document.getElementById('sendto').onchange=function (e) {
+function gettextFieldValue(tvalue){
+	textValue = sendTotextfield.value = tvalue;
+	return  textValue
+}
+
+sendtoSeletField.onchange=function (e) {
 	var cburl = e.target.options[e.target.selectedIndex].text;
 	chrome.storage.sync.get('coreboscreaterecorddata', ({ coreboscreaterecorddata }) => {
 		if (coreboscreaterecorddata==undefined) {
@@ -91,7 +99,8 @@ document.getElementById('sendto').onchange=function (e) {
 		if (coreboscreaterecorddata.cbsecrets!=undefined) {
 			const rightnow = Date.now();
 			cbsha1(coreboscreaterecorddata.cbsecrets[cburl].secret + coreboscreaterecorddata.cbsecrets[cburl].key + rightnow).then((hash) => {
-				document.getElementById('__vt5rftk').value = 'key:' + hash + ',' + rightnow;
+				// document.getElementById('__vt5rftk').value = 'key:' + hash + ',' + rightnow;
+				sendTotextfield.onchange = gettextFieldValue('key:' + hash + ',' + rightnow);
 			});
 		}
 	});
