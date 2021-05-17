@@ -83,3 +83,8 @@ chrome.runtime.onMessage.addListener(
 		}
 	}
 );
+
+function cbCustomEventDispatcher(elEvent, elId){
+	var event = new Event(elEvent);
+	document.getElementById(elId).dispatchEvent(event);
+}

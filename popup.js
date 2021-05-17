@@ -125,8 +125,7 @@ chrome.storage.sync.get('coreboscreaterecorddata', ({ coreboscreaterecorddata })
 			};
 		});
 		cbFillPicklist('convertto', mods);
-		var event = new Event('change');
-		document.getElementById('convertto').dispatchEvent(event);
+		cbCustomEventDispatcher('change', 'convertto');
 	}
 	if (coreboscreaterecorddata.cburls!=undefined) {
 		var cbs = coreboscreaterecorddata.cburls.map((c) => {
