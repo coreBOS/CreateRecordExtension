@@ -135,5 +135,6 @@ chrome.storage.sync.get('coreboscreaterecorddata', ({ coreboscreaterecorddata })
 			};
 		});
 		cbFillPicklist('sendto', cbs);
+		cbCustomEventDispatcher('change','sendto')
 	}
 });
