@@ -78,6 +78,18 @@ document.getElementById('convertto').onchange=function (e) {
 				}
 			}
 			fset.innerHTML = fdef;
+			var customFields = [...document.querySelectorAll('.slds-input')]
+			customFields.forEach((textfield)=> textfield.addEventListener('change',(e)=>{
+				chrome.storage.sync.set({'fieldValue':e.target.value});
+			}));
+			chrome.storage.sync.get("fieldValue",({fieldValue})=>{
+				if(fieldValue==undefined ){
+					return ;
+				}
+				else{
+					customFields.forEach((textfield)=>textfield.value=fieldValue);
+				}
+			});
 		}
 	});
 };
@@ -138,3 +150,5 @@ chrome.storage.sync.get('coreboscreaterecorddata', ({ coreboscreaterecorddata })
 		cbCustomEventDispatcher('change','sendto')
 	}
 });
+
+
