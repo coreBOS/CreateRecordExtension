@@ -78,16 +78,34 @@ document.getElementById('convertto').onchange=function (e) {
 				}
 			}
 			fset.innerHTML = fdef;
-			var customFields = [...document.querySelectorAll('.slds-input')]
-			customFields.forEach((textfield)=> textfield.addEventListener('change',(e)=>{
-				chrome.storage.sync.set({'fieldValue':e.target.value});
+			
+			var allFields = [...document.querySelectorAll('.slds-input')]
+			var allFieldValues =[];
+			allFields.forEach((textfield)=> textfield.addEventListener('change',(e)=>{
+				let fieldnames = {};
+                fieldnames[e.target.name] = e.target.value;
+				allFieldValues.push(fieldnames);
+          		chrome.storage.sync.set({"fieldnames":allFieldValues},()=>{
+					//  
+				  });				
 			}));
-			chrome.storage.sync.get("fieldValue",({fieldValue})=>{
-				if(fieldValue==undefined ){
-					return ;
-				}
-				else{
-					customFields.forEach((textfield)=>textfield.value=fieldValue);
+			
+			chrome.storage.sync.get('fieldnames', function(fieldnames) {
+				if (fieldnames!=undefined) {
+					Object.keys(fieldnames).map(function(key){ 
+						for(var i = 0; i<=fieldnames[key].length-1; i++) {
+						var fieldnamesobjs=fieldnames[key][i]
+						Object.keys(fieldnamesobjs).map(function(key){
+								allFields.forEach((textfield)=>{
+									if(textfield.id==key){
+									document.getElementById(textfield.id).value= obj[key];
+									}
+								});
+						 	})
+						} 
+						})
+				} else {
+					return;	
 				}
 			});
 		}
