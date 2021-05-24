@@ -78,6 +78,18 @@ document.getElementById('convertto').onchange=function (e) {
 				}
 			}
 			fset.innerHTML = fdef;
+			var allFields = [...document.querySelectorAll('.slds-input')]
+			var allFieldValues =[];
+			allFields.forEach((textfield)=> textfield.addEventListener('change',(e)=>{
+				let fieldnames = {};
+                fieldnames[e.target.name] = e.target.value;
+				allFieldValues.push(fieldnames);
+				
+          		chrome.storage.sync.set({"fieldnames":allFieldValues},()=>{
+					//  
+				  });				
+			}));
+			cbPersistValues(allFields);
 		}
 	});
 };
