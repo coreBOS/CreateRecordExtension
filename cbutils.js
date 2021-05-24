@@ -88,3 +88,25 @@ function cbCustomEventDispatcher(elEvent, elId){
 	var event = new Event(elEvent);
 	document.getElementById(elId).dispatchEvent(event);
 }
+
+function cbPersistValues(allFields) {
+	chrome.storage.sync.get('fieldnames', function(fieldnames) {
+		if (fieldnames!=undefined) {
+			Object.keys(fieldnames).map(function(Valuekey) { 
+				for (var index = 0; index<=fieldnames[Valuekey].length-1; index++) {
+					var textFieldValueObject=fieldnames[Valuekey][index];
+					Object.keys(textFieldValueObject).map(function(valuekey) {
+						allFields.forEach((textfield)=> {
+							if (textfield.id==valuekey) {
+								document.getElementById(textfield.id).value= textFieldValueObject[valuekey];
+							}									
+						});
+					});
+				} 
+			});
+		} 
+		else {
+			return ;
+		}
+	});
+}

@@ -85,29 +85,12 @@ document.getElementById('convertto').onchange=function (e) {
 				let fieldnames = {};
                 fieldnames[e.target.name] = e.target.value;
 				allFieldValues.push(fieldnames);
+				console.log(fieldnames)
           		chrome.storage.sync.set({"fieldnames":allFieldValues},()=>{
 					//  
 				  });				
 			}));
-
-			chrome.storage.sync.get('fieldnames', function(fieldnames) {
-				if (fieldnames!=undefined) {
-					Object.keys(fieldnames).map(function(key){ 
-						for(var i = 0; i<=fieldnames[key].length-1; i++) {
-						var fieldnamesobjs=fieldnames[key][i]
-						Object.keys(fieldnamesobjs).map(function(key){
-							allFields.forEach((textfield)=>{
-								if(textfield.id==key){
-									document.getElementById(textfield.id).value= obj[key];
-								}
-							});
-						})
-					} 
-				})
-			} else {
-				return;	
-			}
-		});
+			cbPersistValues(allFields);
 	}});
 };
 
