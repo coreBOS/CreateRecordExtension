@@ -85,7 +85,7 @@ document.getElementById('convertto').onchange=function (e) {
 				let fieldnames = {};
                 fieldnames[e.target.name] = e.target.value;
 				allFieldValues.push(fieldnames);
-				console.log(fieldnames)
+				
           		chrome.storage.sync.set({"fieldnames":allFieldValues},()=>{
 					//  
 				  });				
