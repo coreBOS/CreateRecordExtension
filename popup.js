@@ -28,8 +28,16 @@ document.getElementById('description').onchange=function (e) {
 };
 
 document.getElementById('sendtocb').onclick=function (e) {
-	let url = document.getElementById('sendto').value + '/index.php?action=EditView&module=' + document.getElementById('convertto').value;
-	document.getElementById('sendtocbform').action = url;
+	cbFormActionUrl();
+};
+
+document.getElementById('sendandclean').onclick=function (e) {
+	cbFormActionUrl();
+	chrome.storage.sync.remove('corebospopupdesc');
+	chrome.storage.sync.remove('corebospopuptitle');
+	chrome.storage.sync.remove('fieldnames',function(){
+
+	});
 };
 
 document.getElementById('titlepaste').onclick=function (e) {

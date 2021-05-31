@@ -76,5 +76,9 @@
 	},
 	"Add": {
 		"message": "Add"
+	},
+	"sendToandclean": {
+		"message": "Send and clean"
 	}
+
 }

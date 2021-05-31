@@ -88,3 +88,8 @@ function cbCustomEventDispatcher(elEvent, elId){
 	var event = new Event(elEvent);
 	document.getElementById(elId).dispatchEvent(event);
 }
+
+function cbFormActionUrl() {
+	let url = document.getElementById('sendto').value + '/index.php?action=EditView&module=' + document.getElementById('convertto').value;
+	document.getElementById('sendtocbform').action = url;
+}
