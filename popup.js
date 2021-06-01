@@ -35,9 +35,7 @@ document.getElementById('sendandclean').onclick=function (e) {
 	cbFormActionUrl();
 	chrome.storage.sync.remove('corebospopupdesc');
 	chrome.storage.sync.remove('corebospopuptitle');
-	chrome.storage.sync.remove('fieldnames',function(){
-
-	});
+	chrome.storage.sync.remove('fieldnames');
 };
 
 document.getElementById('titlepaste').onclick=function (e) {
