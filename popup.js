@@ -33,9 +33,12 @@ document.getElementById('sendtocb').onclick=function (e) {
 
 document.getElementById('sendandclean').onclick=function (e) {
 	cbFormActionUrl();
+	let allFields = [...document.querySelectorAll('.slds-input')];
 	chrome.storage.sync.remove('corebospopupdesc');
 	chrome.storage.sync.remove('corebospopuptitle');
-	chrome.storage.sync.remove('fieldnames');
+	allFields.forEach( (textfield) => {
+		chrome.storage.sync.remove([textfield.name]);
+	});
 };
 
 document.getElementById('titlepaste').onclick=function (e) {
@@ -85,15 +88,13 @@ document.getElementById('convertto').onchange=function (e) {
 			}
 			fset.innerHTML = fdef;
 			var allFields = [...document.querySelectorAll('.slds-input')];
-			let fieldnames = {};
 			allFields.forEach((textfield) => textfield.addEventListener('change', (e) => {
-				fieldnames[e.target.name] = e.target.value;
-				chrome.storage.sync.set({'fieldnames':fieldnames});
+				chrome.storage.sync.set({[e.target.name]:e.target.value});
 			}));
-			chrome.storage.sync.get('fieldnames', ({fieldnames}) => {
-				Object.keys(fieldnames).map( function (key) {
-					if (typeof fieldnames[key] != 'undefined') {
-						document.getElementById(key).value = fieldnames[key];
+			allFields.forEach( (textfield) => {
+				chrome.storage.sync.get( function (data) {
+					if (typeof data[textfield.name]!='undefined') {
+						document.getElementById(textfield.name).value = data[textfield.name];
 					}
 				});
 			});
