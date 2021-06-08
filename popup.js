@@ -6,15 +6,10 @@ chrome.runtime.onMessage.addListener(
 	function(request, sender, sendResponse) {
 		switch (request.message) {
 			case 'selectedtext':
-				if (request.payload.field=='description') {
-					document.getElementById('description').value = request.selectedtext;
-					cbCustomEventDispatcher('change', 'description')
-				} else  if (request.payload.field=='title') {
-					document.getElementById('title').value = request.selectedtext;
-					cbCustomEventDispatcher('change', 'title');
-				} else if (request.payload.field!=undefined) {
-					document.getElementById(request.payload.field).value = request.selectedtext;
-					cbCustomEventDispatcher('change', request.payload.field)
+				let fieldId = document.getElementById(request.payload.field);
+				if (fieldId!=undefined) {
+					fieldId.value = request.selectedtext;
+					cbCustomEventDispatcher('change', fieldId.id);
 				}
 				break;
 		}
