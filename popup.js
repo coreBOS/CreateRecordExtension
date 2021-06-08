@@ -8,15 +8,13 @@ chrome.runtime.onMessage.addListener(
 			case 'selectedtext':
 				if (request.payload.field=='description') {
 					document.getElementById('description').value = request.selectedtext;
-					document.getElementById('description').dispatchEvent(event);
+					cbCustomEventDispatcher('change', 'description')
 				} else  if (request.payload.field=='title') {
 					document.getElementById('title').value = request.selectedtext;
-					document.getElementById('title').dispatchEvent(event);
-				} else {
-					if (request.payload.field!=undefined){
-						document.getElementById(request.payload.field).value = request.selectedtext;
-						cbCustomEventDispatcher('cnage', request.payload.field)
-					}
+					cbCustomEventDispatcher('change', 'title');
+				} else if (request.payload.field!=undefined) {
+					document.getElementById(request.payload.field).value = request.selectedtext;
+					cbCustomEventDispatcher('change', request.payload.field)
 				}
 				break;
 		}
