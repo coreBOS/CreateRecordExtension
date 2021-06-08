@@ -10,9 +10,16 @@ chrome.runtime.onMessage.addListener(
 				if (request.payload.field=='description') {
 					document.getElementById('description').value = request.selectedtext;
 					document.getElementById('description').dispatchEvent(event);
-				} else {
+				} else  if (request.payload.field=='title') {
 					document.getElementById('title').value = request.selectedtext;
 					document.getElementById('title').dispatchEvent(event);
+				} else {
+					[...document.querySelectorAll('.slds-input')].forEach((textField) => {
+						if (request.payload.field==textField.id) {
+							document.getElementById(textField.id).value = request.selectedtext;
+							document.getElementById(textField.id).dispatchEvent(event);
+						}
+					})
 				}
 				break;
 		}
@@ -78,11 +85,18 @@ document.getElementById('convertto').onchange=function (e) {
 				if (module==coreboscreaterecorddata.cbfields[i].fmodule) {
 					var fieldname = coreboscreaterecorddata.cbfields[i].fname;
 					var fieldlabel = coreboscreaterecorddata.cbfields[i].flabel;
-					fdef += `<div class="slds-form-element slds-form-element_stacked">
+					fdef += `
+					<div class="slds-form-element slds-form-element_stacked">
 					<label class="slds-form-element__label" for="${fieldname}">${fieldlabel}</label>
-					<div class="slds-form-element__control">
+					<div class="slds-form-element__control slds-grid slds-wrap slds-gutters_xxx-small">
+					<div class="slds-col slds-size_5-of-6">
 					<input type="text" name="${fieldname}" id="${fieldname}" class="slds-input" />
 					</div>
+					<div class="slds-col slds-size_1-of-6">
+					<button type="button" id="pst_${fieldname}"
+					class="slds-input_height paste" data-locale="IT_Paste">P</button>
+					<button type="button" id="clr_${fieldname}"
+					class="slds-input_height clear" data-locale="IT_Clear">C</button></div></div>
 					</div>`;
 				}
 			}
@@ -98,6 +112,21 @@ document.getElementById('convertto').onchange=function (e) {
 					}
 				});
 			});
+
+			[...document.querySelectorAll('.paste')].forEach( (btn) => btn.addEventListener('click',  (e) => {
+					chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
+						chrome.tabs.sendMessage(tabs[0].id, {
+							'message': 'getSelectedText',
+							'payload':{'field':e.target.id.substring(4)
+						}});
+					});
+				})
+			);
+
+			[...document.querySelectorAll('.clear')].forEach( (btn) => btn.addEventListener('click',  (e) => {
+					document.getElementById(e.target.id.substring(4)).value = '';
+				})
+			)
 		}
 	});
 };
