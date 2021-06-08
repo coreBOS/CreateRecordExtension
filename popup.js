@@ -4,7 +4,6 @@ cbi18nHTML(); // twice is intentional for nested elements
 
 chrome.runtime.onMessage.addListener(
 	function(request, sender, sendResponse) {
-		var event = new Event('change');
 		switch (request.message) {
 			case 'selectedtext':
 				if (request.payload.field=='description') {
@@ -14,12 +13,10 @@ chrome.runtime.onMessage.addListener(
 					document.getElementById('title').value = request.selectedtext;
 					document.getElementById('title').dispatchEvent(event);
 				} else {
-					[...document.querySelectorAll('.slds-input')].forEach((textField) => {
-						if (request.payload.field==textField.id) {
-							document.getElementById(textField.id).value = request.selectedtext;
-							document.getElementById(textField.id).dispatchEvent(event);
-						}
-					})
+					if (request.payload.field!=undefined){
+						document.getElementById(request.payload.field).value = request.selectedtext;
+						cbCustomEventDispatcher('cnage', request.payload.field)
+					}
 				}
 				break;
 		}
