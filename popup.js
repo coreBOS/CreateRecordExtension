@@ -6,10 +6,10 @@ chrome.runtime.onMessage.addListener(
 	function(request, sender, sendResponse) {
 		switch (request.message) {
 			case 'selectedtext':
-				let fieldId = document.getElementById(request.payload.field);
-				if (fieldId!=undefined) {
-					fieldId.value = request.selectedtext;
-					cbCustomEventDispatcher('change', fieldId.id);
+				let field = document.getElementById(request.payload.field);
+				if (field!=undefined) {
+					field.value = request.selectedtext;
+					cbCustomEventDispatcher('change', field.id);
 				}
 				break;
 		}
@@ -45,6 +45,7 @@ document.getElementById('titlepaste').onclick=function (e) {
 };
 
 document.getElementById('titleclear').onclick=function (e) {
+	chrome.storage.sync.remove('corebospopuptitle');
 	document.getElementById('title').value = '';
 };
 
@@ -55,6 +56,7 @@ document.getElementById('descpaste').onclick=function (e) {
 };
 
 document.getElementById('descclear').onclick=function (e) {
+	chrome.storage.sync.remove('corebospopupdesc');
 	document.getElementById('description').value = '';
 };
 
@@ -114,9 +116,10 @@ document.getElementById('convertto').onchange=function (e) {
 			);
 
 			[...document.querySelectorAll('.clear')].forEach( (btn) => btn.addEventListener('click',  (e) => {
+					chrome.storage.sync.remove(e.target.id.substring(4));
 					document.getElementById(e.target.id.substring(4)).value = '';
 				})
-			)
+			);
 		}
 	});
 };
