@@ -1,0 +1,83 @@
+{
+	"extname": {
+		"message": "enviar para CRM"
+	},
+	"CreateRecord": {
+		"message": "Criar Registro"
+	},
+	"ConvertTo": {
+		"message": "Converter para"
+	},
+	"Required": {
+		"message": "Obrigatório"
+	},
+	"Title": {
+		"message": "Título"
+	},
+	"Description": {
+		"message": "Descriçãp"
+	},
+	"SendTo": {
+		"message": "Enviar para"
+	},
+	"Paste": {
+		"message": "Copiar"
+	},
+	"Clear": {
+		"message": "Limpar"
+	},
+	"Delete": {
+		"message": "Deletar"
+	},
+	"Label": {
+		"message": "Etiqueta"
+	},
+	"Name": {
+		"message": "Nome"
+	},
+	"Module": {
+		"message": "Módulo"
+	},
+	"Modules": {
+		"message": "Módulos"
+	},
+	"Action": {
+		"message": "Action"
+	},
+	"URL": {
+		"message": "URL"
+	},
+	"Secret": {
+		"message": "Senha"
+	},
+	"Key": {
+		"message": "Key"
+	},
+	"TitleField": {
+		"message": "Título Campo"
+	},
+	"SaveSettings": {
+		"message": "Salvar Preferências"
+	},
+	"SettingsSaved": {
+		"message": "Preferências salvas."
+	},
+	"cbURLs": {
+		"message": "CRM URLs"
+	},
+	"OptionalFields": {
+		"message": "Campos opcionais"
+	},
+	"cbSettings": {
+		"message": "Opções no CRM"
+	},
+	"CreateRecordSettings": {
+		"message": "Criar registro preferências CRM"
+	},
+	"Add": {
+		"message": "Adicionar"
+	},
+	"sendToandclean": {
+		"message": "salvar e limpar"
+	}
+}
